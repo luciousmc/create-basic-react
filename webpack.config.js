@@ -1,3 +1,8 @@
+require('dotenv/config');
+const path = require('path');
+
+const publicPath = path.join(__dirname, 'dist');
+
 module.exports = {
   mode: 'development',
   resolve: {
@@ -21,5 +26,13 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       }
     ]
+  },
+  devServer: {
+    contentBase: publicPath,
+    historyApiFallback: true,
+    host: 'localhost',
+    port: process.env.DEV_SERVER_PORT,
+    stats:'minimal',
+    watchContentBase: true
   }
 }
